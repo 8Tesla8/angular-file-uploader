@@ -1,0 +1,86 @@
+.flex-row-center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.flex-row-center-center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex-column-center-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.activated{
+    cursor:pointer;
+}
+.deactivated{
+    cursor:not-allowed;
+    opacity: 0.2;
+}
+
+.round-button {
+    text-align: center;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+
+    height: 30px;
+    min-width: 200px;
+    width: max-content;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+$animation-speed-fast: 0.4s;
+$animation-speed-average: 1s;
+$animation-speed-long: 3s;
+
+.small-animation {
+    transition: all $animation-speed-fast ease-in-out;
+}
+
+.icon-size-animation{
+    animation: icon-size-animation $animation-speed-average infinite forwards;
+
+
+    @keyframes icon-size-animation {    
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+}
+
+.image-rotate-infinite-animation{
+    animation: rotate $animation-speed-long linear infinite;
+    @keyframes rotate {
+        0% {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+        }
+    }
+}

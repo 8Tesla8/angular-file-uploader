@@ -1,0 +1,168 @@
+@import "common.scss";
+
+$main-color: beige;
+$second-color: white;
+$neutral-color: Gainsboro;
+
+
+$border-radius: 10px;
+$border-width: 2px;
+$big-icon-size: 50px;
+$small-icon-size: 20px;
+
+.content {
+    padding: 20px;
+    background-color: $main-color;
+
+    .padding-lr{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .drop-file{
+        opacity: 0.6;
+    }
+
+    .main-buttons{
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        justify-content: space-between;
+
+        .round-button{
+            background-color: $second-color;
+        }
+    }
+
+    .drop-zone {
+        background-color: $second-color;
+        padding: 5px;
+        margin-bottom: 20px;
+
+        border-style: dashed;
+        border-width: $border-width;
+        border-radius: $border-radius;
+        
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        &:hover{
+            background-color: $neutral-color;
+            cursor: pointer;
+        }
+
+        img{
+            padding-left: 10px;
+            padding-right: 10px;
+            width: $big-icon-size;
+            height: $big-icon-size;
+        }
+
+        .file-exteinsion{
+            font-size: small;
+        }
+    }
+
+    .main-status{
+        .text{
+            @extend .padding-lr;
+        }
+
+        img{
+            width: $small-icon-size;
+            height: $small-icon-size;
+        }
+    }
+
+    .files-block {
+        .file-count {
+            font-size: small;
+            height: 20px;
+            display: inline-block;
+
+            @extend .padding-lr;
+        }
+
+        .file-info-table {
+            background-color: $second-color;
+            height: 30vh;
+
+            border-style: solid;
+            border-width: $border-width;
+            border-radius: $border-radius;
+            overflow: auto;
+
+            .file-info-item{
+                display: grid;
+
+                padding-left: 10px;
+                padding-right: 10px;
+
+                padding-top: 5px;
+                padding-bottom: 5px;
+
+                grid-template-rows: 30px 15px auto;
+                grid-template-columns: auto 1fr auto 50px;
+
+                grid-template-areas: 
+                'status name size buttons'
+                'status progress-bar progress-bar progress'
+                'line line line line'
+                ;
+
+                .status{
+                    width: $big-icon-size + 10px;
+                    grid-area: status;
+                    @extend .padding-lr;
+
+                    img{
+                        width: $big-icon-size;
+                        height: $big-icon-size;
+                    }
+                }
+                .name{
+                    grid-area: name;
+                }
+                .size{
+                    grid-area: size;
+
+                    @extend .padding-lr;
+                }
+                .buttons{
+                    grid-area: buttons;
+                    img{
+                        width: $small-icon-size;
+                        height: $small-icon-size;
+                    }
+                }
+                .file-progress-bar{
+                    grid-area: progress-bar;
+                    border-style: solid;
+                    border-width: $border-width;
+                    border-radius: $border-radius;
+                    height: 100%;
+
+                    .file-progress-bar-indicator{
+                        background-color: $neutral-color;
+                        height: 100%;
+                    }
+                }
+                .progress-value{
+                    grid-area: progress;
+
+                    font-size: small;
+                    @extend .padding-lr;
+                }
+                .line{
+                    grid-area: line;
+
+                    height: 1px;
+                    border-bottom: 1px solid;
+                    margin-top: 10px;
+                }
+                
+
+            }
+        }
+    }
+}

@@ -1,0 +1,108 @@
+﻿<div class="content" ng2FileDrop (fileOver)="fileOverWindow($event)">
+
+    <!-- invisible fileInput to browser file -->
+    <input type="file" ng2FileSelect [uploader]="uploader" multiple style="display:none;" [accept]="mimeType" #fileInput>
+
+    <div ng2FileDrop
+        (click)="fileInput.click()" (fileOver)="fileOverDropZone($event)" [uploader]="uploader"
+        class="drop-zone flex-row-center small-animation"
+        [ngClass]="{ 'drop-file': hasFileOnDropZone } ">
+        
+        <img [ngClass]="{ 'icon-size-animation': hasFileOnWindow}" src="assets/upload.svg" alt="upload" />
+
+        <span class="flex-column-center-center">
+            <span>
+                Use Drag and Drop or Choose file
+            </span>
+            <div class="file-exteinsion">
+                <span *ngFor="let extns of fileExtension">
+                    {{extns | uppercase}} 
+               </span>
+            </div>
+        </span>
+
+
+    </div>
+
+    <div class="files-block">
+        <div class="file-count">
+
+            <div class="main-status flex-row-center-center">
+                <span class="text">
+                    {{getNotUploadedFilesCount()}}
+                    of
+                    {{getFilesCount()}}
+                    Uploaded
+                    <!-- {{uploader.progress}} % -->
+                </span>
+
+                <img *ngIf="uploader.isUploading" class="image-rotate-infinite-animation" src="assets/update.svg" alt="update" />
+
+                <img *ngIf="downloadFinished && filesWithError.length == 0" src="assets/check.svg" alt="check" />
+
+                <img *ngIf="filesWithError.length > 0" src="assets/warning.svg" alt="warning" />
+
+            </div>
+
+        </div>
+
+        <div class="file-info-table">
+            <div class="file-info-item" *ngFor="let item of uploader.queue">
+
+                <div class="status">
+                    <img *ngIf="item.isSuccess" src="assets/check.svg" alt="check" />
+                    
+                    <img *ngIf="item.isError" src="assets/warning.svg" alt="warning" />
+
+                    <img *ngIf="item.isCancel" src="assets/cancel.svg" alt="cancel" />
+
+                    <img *ngIf="item.isUploading" class="image-rotate-infinite-animation" src="assets/update.svg" alt="update" />
+                </div>
+
+
+                <div class="name">
+                    {{item.file.name}}
+                </div>
+
+                <div class="size">
+                    {{convertSize(item.file.size)}}
+                </div>
+
+                <div class="file-progress-bar">
+                    <div class="file-progress-bar-indicator"
+                        [ngStyle]="{ width: item.progress + '%' }"></div>
+                </div>
+
+                <div class="progress-value flex-row-center-center">
+                    <span *ngIf="showProgresValue(item)">
+                        {{item.progress}}%
+                    </span>
+                </div>
+
+                <div class="buttons flex-row-center-center">
+                    <span
+                        [ngClass]="showCancelBtn(item) ? 'activated' : 'deactivated' "
+                        (click)="item.cancel()">
+                        <img src="assets/cancel-btn.svg" alt="cancel-btn" />
+                    </span>
+
+                    <span class="activated" (click)="removeItem(item)">
+                        <img src="assets/delete.svg" alt="delete" />
+                    </span>
+
+                </div>
+
+                <div class="line">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main-buttons flex-row-center">
+        <div class="round-button activated" (click)="upload()">Upload</div>
+        <div class="round-button activated" (click)="stop()">Stop</div>
+    </div>
+
+</div>
