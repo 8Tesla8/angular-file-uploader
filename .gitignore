@@ -1,3 +1,52 @@
+# .gitignore
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Angular build artifacts
+dist/
+out-tsc/
+ng-out/
+
+# Angular configuration files
+.angular/
+.angular-cache/
+
+# Editor and IDE files
+.idea/
+.vscode/
+*.suo
+*.user
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj
+*.pidb
+*.svclog
+*.scc
+*.sw?
+*.bak
+*.tmp
+*.sw?
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.tlog
+*.log
+*.cache
+*.bak
+
+# End of .gitignore
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
